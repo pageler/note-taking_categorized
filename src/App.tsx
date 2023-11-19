@@ -79,7 +79,15 @@ function App(props: AppProps) {
             <div>
                 <Container className="my-4">
                     <Routes>
-                        <Route path="/" element={<NoteList />} />
+                        <Route
+                            path="/"
+                            element={
+                                <NoteList
+                                    availableTags={tags}
+                                    notes={notesWithTags}
+                                />
+                            }
+                        />
                         <Route
                             path="/new"
                             element={
@@ -90,7 +98,7 @@ function App(props: AppProps) {
                                 />
                             }
                         />
-                        <Route path="/:id" element={<NoteLayout />}>
+                        <Route path="/:id">
                             <Route index element={<NoteDetails />} />
                             <Route path="edit" element={<EditNote />} />
                         </Route>
