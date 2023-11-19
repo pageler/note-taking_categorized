@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useNote } from "../components/NoteLayout";
 import ReactMarkdown from "react-markdown";
 
-type NoteDetailsProps = {};
+type NoteDetailsProps = {
+    onDeleteNote: (id: string) => void;
+};
 
-export const NoteDetails = (props: NoteDetailsProps) => {
+export const NoteDetails = ({ onDeleteNote }: NoteDetailsProps) => {
     const note = useNote();
 
     return (
@@ -21,7 +23,10 @@ export const NoteDetails = (props: NoteDetailsProps) => {
                         <Link to={`/${note.id}/edit`}>
                             <Button variant="primary">Edit Note Details</Button>
                         </Link>
-                        <Button variant="outline-danger">
+                        <Button
+                            variant="outline-danger"
+                            onClick={() => onDeleteNote(note.id)}
+                        >
                             Delete Note Details
                         </Button>
                         <Link to="/">
