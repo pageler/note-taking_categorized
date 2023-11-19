@@ -84,6 +84,24 @@ function App(props: AppProps) {
         setTags((prevTags) => [...prevTags, tag]);
     }
 
+    function onUpdateTag(id: string, label: string) {
+        setTags((prevTags) => {
+            return prevTags.map((tag) => {
+                if (tag.id === id) {
+                    return { ...tag, label };
+                } else {
+                    return tag;
+                }
+            });
+        });
+    }
+
+    function onDeleteTag(id: string) {
+        setTags((prevTags) => {
+            return prevTags.filter((tag) => tag.id !== id);
+        });
+    }
+
     return (
         <>
             <div
@@ -107,6 +125,8 @@ function App(props: AppProps) {
                                 <NoteList
                                     availableTags={tags}
                                     notes={notesWithTags}
+                                    onUpdateTag={onUpdateTag}
+                                    onDeleteTag={onDeleteTag}
                                 />
                             }
                         />
