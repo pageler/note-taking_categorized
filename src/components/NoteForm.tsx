@@ -43,7 +43,11 @@ export const NoteForm = ({
                     <Col>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control required ref={titleRef} />
+                            <Form.Control
+                                required
+                                ref={titleRef}
+                                defaultValue={title}
+                            />
                         </Form.Group>
                     </Col>
 
@@ -88,6 +92,7 @@ export const NoteForm = ({
                         as="textarea"
                         rows={13}
                         ref={markdownRef}
+                        defaultValue={markdown}
                     />
                 </Form.Group>
 

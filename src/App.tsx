@@ -58,6 +58,22 @@ function App(props: AppProps) {
         });
     }
 
+    function onUpdateNote(id: string, { tags, ...data }: NoteData) {
+        setNotes((prevNotes) => {
+            return prevNotes.map((note) => {
+                if (note.id === id) {
+                    return {
+                        ...note,
+                        ...data,
+                        tagIds: tags.map((tag) => tag.id),
+                    };
+                } else {
+                    return note;
+                }
+            });
+        });
+    }
+
     function onAddTag(tag: Tag) {
         setTags((prevTags) => [...prevTags, tag]);
     }
@@ -103,7 +119,16 @@ function App(props: AppProps) {
                             element={<NoteLayout notes={notesWithTags} />}
                         >
                             <Route index element={<NoteDetails />} />
-                            <Route path="edit" element={<EditNote />} />
+                            <Route
+                                path="edit"
+                                element={
+                                    <EditNote
+                                        onSubmit={onUpdateNote}
+                                        onAddTag={onAddTag}
+                                        availableTags={tags}
+                                    />
+                                }
+                            />
                         </Route>
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
