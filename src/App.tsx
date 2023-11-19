@@ -98,7 +98,10 @@ function App(props: AppProps) {
                                 />
                             }
                         />
-                        <Route path="/:id">
+                        <Route
+                            path="/:id"
+                            element={<NoteLayout notes={notesWithTags} />}
+                        >
                             <Route index element={<NoteDetails />} />
                             <Route path="edit" element={<EditNote />} />
                         </Route>
