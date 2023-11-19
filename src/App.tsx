@@ -74,7 +74,7 @@ function App(props: AppProps) {
                     fontSize: "3em",
                 }}
             >
-                <u>Note-Taking Categorized Markdown App</u>
+                <u>Note Taking (Categorized, Markdown) App</u>
             </div>
             <div>
                 <Container className="my-4">
